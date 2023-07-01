@@ -82,12 +82,12 @@
      owner: '{{ ansible_user }}'
      group: '{{ ansible_user }}'
 
-  - name: copy .zshrc file
+  - name: copy  .zshrc file
     copy:
-    src: files/zshrc
-    dest: '{{ ansible_env.HOME}}/.zshrc'
-    owner: '{{ ansible_user }}'
-    group: '{{ ansible_user }}'
+     src: files/zshrc
+     dest: '{{ ansible_env.HOME}}/.zshrc'
+     owner: '{{ ansible_user }}'
+     group: '{{ ansible_user }}'
 
 
   - name: Copy .vimrc file
