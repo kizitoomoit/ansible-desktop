@@ -21,7 +21,7 @@
         - tmux
         - glances
         - ffmpeg
-        - gmone-shell-extensions
+        - gnome-shell-extensions
         - vlc
         - wget
         - curl
