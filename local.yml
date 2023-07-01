@@ -46,8 +46,7 @@
       dest: "/tmp/google-chrome-stable_current_amd64.deb"
 
   - name: Install Google chrome
-    dpkg:
-      deb: "/tmp/google-chrome-stable_current_amd64.deb"
+    command: /usr/bin/dpkg -i /tmp/google-chrome-stable_current_amd64.deb
 
   - name: Add Microsoft repository key for vscode
     apt_key:
