@@ -99,7 +99,7 @@
 
   - name: Copy .plugin file
     copy:
-    src: files/plugin/plugins.vim
-    dest: '{{ ansible_env.HOME }}/.vim/plugins.vim'
-    owner: '{{ ansible_user }}'
-    group: '{{ ansible_user }}'
+     src: files/plugin/plugins.vim
+     dest: '{{ ansible_env.HOME }}/.vim/plugins.vim'
+     owner: '{{ ansible_user }}'
+     group: '{{ ansible_user }}'
