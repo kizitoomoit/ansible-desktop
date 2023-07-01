@@ -13,5 +13,94 @@
 
   - name: Install core packages
     package:
-      name: htop
+      name:
+        - ssh
+        - openssh-server
+        - vim
+        - git
+        - tmux
+        - glances
+        - ffmpeg
+        - gmone-shell-extensions-manager
+        - vlc
+        - wget
+        - curl
+        - whois
+        - zsh
+        - xpad
+        - tldr
+        - unzip
+        - gzip
+        - chrome-gnome-shell
+        - dconf-editor
+        - coreutils
+        - avahi-daemon
+        - gnome-tweaks
+        - neofetch
+        - software-properties-common
+        - apt-transport-https
 
+  - name: Download Google Chrome .deb file
+    get_url:
+      url: "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+      dest: "/tmp/google-chrome-stable_current_amd64.deb"
+
+  - name: Install Google chrome
+    dpkg:
+      deb: "/tmp/google-chrome-stable_current_amd64.deb"
+
+  - name: Add Microsoft repository key for vscode
+    apt_key:
+      url: https://packages.microsoft.com/keys/microsoft.asc
+      state: present
+
+  - name: Add Microsoft repository for vscode
+    apt_repository:
+      repo: "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+      state: present
+      update_cache: yes
+
+  - name: Install vscode
+    package:
+      name: code
+
+  - name: Clone Vundle.vim repository
+    git:
+      repo: https://github.com/VundleVim/Vundle.vim.git
+      dest: ~/.vim/bundle/Vundle.vim
+
+  - name: Run command to install Oh My Zsh
+    command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+  - name: Run vim command for PluginInstall
+    command: vim +PluginInstall +qall
+
+
+  - name: copy .bashrc file
+    copy:
+     src: files/bashrc
+     dest: '{{ ansible_env.HOME }}/.bashrc'
+     owner: '{{ ansible_user }}'
+     group: '{{ ansible_user }}'
+
+  - name: copy .zshrc file
+    copy:
+    src: files/zshrc
+    dest: '{{ ansible_env.HOME}}/.zshrc'
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_user }}'
+
+
+  - name: Copy .vimrc file
+    copy:
+     src: files/vimrc
+     dest: '{{ ansible_env.HOME }}/.vimrc'
+     owner: '{{ ansible_user }}'
+     group: '{{ ansible_user }}'
+
+  - name: Copy .plugin file
+    copy:
+    src: files/plugin/plugins.vim
+    dest: '{{ ansible_env.HOME }}/.vim/plugins.vim'
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_user }}'
