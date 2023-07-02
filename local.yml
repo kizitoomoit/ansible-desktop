@@ -41,6 +41,7 @@
         - apt-transport-https
         - flameshot
         - xclip
+        - gnome-shell-extension-prefs
 
           # - name: Set zsh as the default shell
           #become: true
@@ -75,10 +76,16 @@
     package:
       name: code
 
+  - name: Install Dash to Dock GNOME Shell extension
+    command: gnome-extensions install dash-to-dock@micxgx.gmail.com
+    become_user: "{{ ansible_user }}"
+    changed_when: false
+
+
   - name: Enable GNOME Shell extensions
-    shell: gnome-extensions enable Dash to Dock
-    args:
-      executable: /usr/bin/gnome-extensions
+    shell: gnome-extensions enable dash-to-dock@micxgx.gmail.com
+    become_user: "{{ ansible_user }}"
+    changed_shen: false
 
   - name: Add Ulauncher repository
     command: sudo add-apt-repository ppa:agornostal/ulauncher
