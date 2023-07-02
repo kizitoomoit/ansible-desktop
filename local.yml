@@ -42,12 +42,12 @@
         - flameshot
         - xclip
 
-  - name: Set zsh as the default shell
-    become: true
-    shell: chsh -s /usr/bin/zsh '{{ ansible_env }}'
-    args:
-      executable: /usr/bin/zsh
-    register: chsh_result
+          # - name: Set zsh as the default shell
+          #become: true
+          #shell: chsh -s /usr/bin/zsh '{{ ansible_env }}'
+          #args:
+          #executable: /usr/bin/zsh
+          #register: chsh_result
       #  changed_when: chsh_result.stdout.find('/usr/bin/zsh') != -1
 
   - name: Download Google Chrome .deb file
