@@ -54,7 +54,7 @@
     get_url:
       url: "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
       dest: "/tmp/google-chrome-stable_current_amd64.deb"
-      register: chrome_install_result
+        #register: chrome_install_result
         #changed_when: "'google-chrome-stable' in chrome_install_result.stdout"
 
   - name: Install Google chrome
