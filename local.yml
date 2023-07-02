@@ -82,7 +82,10 @@
     command: sudo apt update
 
   - name: Install Ulauncher
-    command: sudo apt install ulauncher
+    expect:
+      command: sudo apt install -y ulauncher
+      responses:
+        "Do you want to continue? [Y/n]": "yes"
 
   - name: Clone Vundle.vim repository
     git:
