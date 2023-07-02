@@ -42,6 +42,14 @@
         - flameshot
         - xclip
 
+  - name: Set zsh as the default shell
+    become: true
+    shell: chsh -s /usr/bin/zsh {{ ansible_env }}
+    args:
+      executable: /usr/bin/zsh
+    register: chsh_result
+    changed_when: chsh_result.stdout.find('/usr/bin/zsh') != -1
+
   - name: Download Google Chrome .deb file
     get_url:
       url: "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
@@ -76,14 +84,16 @@
   - name: Install Ulauncher
     command: sudo apt install ulauncher
 
-
   - name: Clone Vundle.vim repository
     git:
       repo: https://github.com/VundleVim/Vundle.vim.git
       dest: ~/.vim/bundle/Vundle.vim
 
   - name: Run command to install Oh My Zsh
-    command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    expect:
+      command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      responses:
+        '(#.*):' : 'yes'
 
   - name: Run vim command for PluginInstall
     command: vim +PluginInstall +qall
