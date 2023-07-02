@@ -44,7 +44,7 @@
 
   - name: Set zsh as the default shell
     become: true
-    shell: chsh -s /usr/bin/zsh {{ ansible_env }}
+    shell: chsh -s /usr/bin/zsh '{{ ansible_env }}'
     args:
       executable: /usr/bin/zsh
     register: chsh_result
