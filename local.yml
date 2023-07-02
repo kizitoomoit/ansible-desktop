@@ -48,7 +48,7 @@
     args:
       executable: /usr/bin/zsh
     register: chsh_result
-    changed_when: chsh_result.stdout.find('/usr/bin/zsh') != -1
+      #  changed_when: chsh_result.stdout.find('/usr/bin/zsh') != -1
 
   - name: Download Google Chrome .deb file
     get_url:
