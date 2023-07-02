@@ -39,6 +39,7 @@
         - neofetch
         - software-properties-common
         - apt-transport-https
+        - flameshot
 
   - name: Download Google Chrome .deb file
     get_url:
@@ -62,6 +63,16 @@
   - name: Install vscode
     package:
       name: code
+
+  - name: Add Ulauncher repository
+    command: sudo add-apt-repository ppa:agornostal/ulauncher
+
+  - name: Update apt cache
+    command: sudo apt update
+
+  - name: Install Ulauncher
+    command: sudo apt install ulauncher
+
 
   - name: Clone Vundle.vim repository
     git:
