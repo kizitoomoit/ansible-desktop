@@ -78,12 +78,12 @@
 
   - name: Install Dash to Dock GNOME Shell extension
     command: gnome-extensions install dash-to-dock@micxgx.gmail.com
-    become_user: "{{ ansible_user }}"
+    become_user: "{{ ansible_user | default(ansible_env.USER) }}"
     changed_when: false
 
   - name: Enable GNOME Shell extensions
     command: gnome-extensions enable dash-to-dock@micxgx.gmail.com
-    become_user: "{{ ansible_user }}"
+    become_user: "{{ ansible_user | default(ansible_env.USER) }}"
     changed_when: false
 
   - name: Add Ulauncher repository
