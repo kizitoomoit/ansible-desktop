@@ -86,6 +86,8 @@
       command: sudo apt install -y ulauncher
       responses:
         "Do you want to continue? [Y/n]": "yes"
+      async: 300
+      poll: 0
 
   - name: Clone Vundle.vim repository
     git:
