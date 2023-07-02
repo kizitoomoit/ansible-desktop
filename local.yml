@@ -40,6 +40,7 @@
         - software-properties-common
         - apt-transport-https
         - flameshot
+        - xclip
 
   - name: Download Google Chrome .deb file
     get_url:
