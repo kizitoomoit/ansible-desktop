@@ -83,9 +83,8 @@
 
   - name: Install Ulauncher
     expect:
-      command: sudo apt install -y  ulauncher
+      command: sudo apt install -y ulauncher
     async: 300
-    poll: 0
 
   - name: Clone Vundle.vim repository
     git:
