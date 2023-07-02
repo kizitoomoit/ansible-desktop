@@ -93,7 +93,7 @@
 
   - name: Enable GNOME Shell extensions
     command: gnome-extensions enable dash-to-dock@micxgx.gmail.com
-    becom: true
+    become: true
     become_user: "{{ ansible_user | default(ansible_env.USER) }}"
 
   - name: Download yt-dlp
