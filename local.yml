@@ -84,7 +84,7 @@
   - name: Enable GNOME Shell extensions
     command: gnome-extensions enable dash-to-dock@micxgx.gmail.com
     become_user: "{{ ansible_user }}"
-    changed_shen: false
+    changed_when: false
 
   - name: Add Ulauncher repository
     command: sudo add-apt-repository ppa:agornostal/ulauncher
