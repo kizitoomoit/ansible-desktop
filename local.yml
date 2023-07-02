@@ -90,6 +90,9 @@
       repo: https://github.com/VundleVim/Vundle.vim.git
       dest: ~/.vim/bundle/Vundle.vim
 
+  - name: Execute zsh with option 2
+    command: expect -c 'spawn zsh; expect "This function can help you wit a few settings that should make your use of shell esier. You can:"; send "2\r"; interact'
+
   - name: Run command to install Oh My Zsh
     expect:
       command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
