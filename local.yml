@@ -83,7 +83,7 @@
 
   - name: Install Ulauncher
     expect:
-      command: sudo apt install -y ulauncher
+      command: sudo apt install ulauncher
       responses:
         "Do you want to continue? [Y/n]": "yes"
     async: 300
