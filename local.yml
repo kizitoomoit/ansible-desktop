@@ -76,17 +76,17 @@
     package:
       name: code
 
-  - name: Install Dash to Dock GNOME Shell extension
+  - name: Download Dash to Dock GNOME Shell extension
     uri:
-      url: "https://extensions.gnome.org/review/download/307.shell-extension.zip"
-      dest: "{{ ansible_env.HOME }}/Downloads/dash-to-dock.zip"
+      url: "https://extensions.gnome.org/extension-data/dash-to-dock%40micxgx.gmail.com.v69.shell-extension.zip"
+      dest: "{{ ansible_env.HOME }}/tmp/dash-to-dock.zip"
       return_content: no
     register: download_result
 
   - name: Unzip Dash to Dock GNOME Shell extension
     unarchive:
-      src: "{{ ansible_env.HOME }}/Downloads/dash-to-dock.zip"
-      dest: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/"
+      src: "{{ ansible_env.HOME }}/tmp/dash-to-dock.zip"
+      dest: "{{ ansible_env.HOME }}/tmp/dash-to-dock"
       remote_src: yes
       creates: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/metadata.json"
     when: download_result.status == 200
