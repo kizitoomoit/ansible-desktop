@@ -82,7 +82,7 @@
     changed_when: false
 
   - name: Enable GNOME Shell extensions
-    shell: gnome-extensions enable dash-to-dock@micxgx.gmail.com
+    command: gnome-extensions enable dash-to-dock@micxgx.gmail.com
     become_user: "{{ ansible_user }}"
     changed_shen: false
 
