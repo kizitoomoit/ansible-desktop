@@ -75,6 +75,11 @@
     package:
       name: code
 
+  - name: Enable GNOME Shell extensions
+    shell: gnome-extensions enable Dash to Dock
+    args:
+      executable: /usr/bin/gnome-extensions
+
   - name: Add Ulauncher repository
     command: sudo add-apt-repository ppa:agornostal/ulauncher
 
