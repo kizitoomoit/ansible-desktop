@@ -77,14 +77,30 @@
       name: code
 
   - name: Install Dash to Dock GNOME Shell extension
-    command: gnome-extensions install dash-to-dock@micxgx.gmail.com
-    become_user: "{{ ansible_user | default(ansible_env.USER) }}"
-    changed_when: false
+    uri:
+      url: "https://extensions.gnome.org/review/download/307.shell-extension.zip"
+      dest: "{{ ansible_env.HOME }}/Downloads/dash-to-dock.zip"
+      return_content: no
+    register: download_result
+
+  - name: Unzip Dash to Dock GNOME Shell extension
+    unarchive:
+      src: "{{ ansible_env.HOME }}/Downloads/dash-to-dock.zip"
+      dest: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/"
+      remote_src: yes
+      creates: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/metadata.json"
+    when: download_result.status == 200
 
   - name: Enable GNOME Shell extensions
     command: gnome-extensions enable dash-to-dock@micxgx.gmail.com
+    becom: true
     become_user: "{{ ansible_user | default(ansible_env.USER) }}"
-    changed_when: false
+
+  - name: Download yt-dlp
+    command: wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp
+
+  - name: Change permissions for yt-dlp
+    command: chmod a+rx /usr/local/bin/yt-dlp
 
   - name: Add Ulauncher repository
     command: sudo add-apt-repository ppa:agornostal/ulauncher
