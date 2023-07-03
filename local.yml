@@ -84,6 +84,7 @@
 
   - name: Unzip Dash to Dock GNOME Shell extension
     unarchive:
+      become: false
       src: "/tmp/dash-to-dock.zip"
       dest: "{{ ansible_user_id }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
       remote_src: yes
