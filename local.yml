@@ -79,21 +79,19 @@
   - name: Download Dash to Dock GNOME Shell extension
     uri:
       url: "https://extensions.gnome.org/extension-data/dash-to-dock%40micxgx.gmail.com.v69.shell-extension.zip"
-      dest: "{{ ansible_env.HOME }}/tmp/dash-to-dock.zip"
-      return_content: no
-    register: download_result
+      dest: "/tmp/dash-to-dock.zip"
+      mode: 0644
 
   - name: Unzip Dash to Dock GNOME Shell extension
     unarchive:
-      src: "{{ ansible_env.HOME }}/tmp/dash-to-dock.zip"
-      dest: "{{ ansible_env.HOME }}/tmp/dash-to-dock"
+      src: "/tmp/dash-to-dock.zip"
+      dest: "/home{{ ansible_user }}/Downloads"
       remote_src: yes
-      creates: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/metadata.json"
-    when: download_result.status == 200
+      extra_opts: --strip-components=1
+      creates: "/home/{{ ansible_user }}/Downloads/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/metadata.json"
 
   - name: Enable GNOME Shell extensions
-    command: gnome-extensions enable dash-to-dock@micxgx.gmail.com
-    become: true
+    command: "gnome-extensions install /home{{ ansible_user }}/Downloads/dash-to-dock@micxgx.gmail.com"
     become_user: "{{ ansible_user | default(ansible_env.USER) }}"
 
   - name: Download yt-dlp
