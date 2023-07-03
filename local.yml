@@ -78,7 +78,7 @@
 
   - name: Download Dash to Dock GNOME Shell extension
     uri:
-      url: "https://extensions.gnome.org/extension-data/dash-to-dock%40micxgx.gmail.com.v69.shell-extension.zip"
+      url: "https://extensions.gnome.org/extension-data/dash-to-dockmicxgx.gmail.com.v71.shell-extension.zip"
       dest: "/tmp/dash-to-dock.zip"
       mode: 0644
 
