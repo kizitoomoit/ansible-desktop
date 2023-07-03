@@ -85,10 +85,10 @@
   - name: Unzip Dash to Dock GNOME Shell extension
     unarchive:
       src: "/tmp/dash-to-dock.zip"
-      dest: "/home{{ ansible_user }}/Downloads"
+      dest: "{{ ansible_env.HOME }}/Downloads"
       remote_src: yes
       extra_opts: --strip-components=1
-      creates: "/home/{{ ansible_user }}/Downloads/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/metadata.json"
+      creates: "{{ ansible_env.home }}/Downloads/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/metadata.json"
 
   - name: Enable GNOME Shell extensions
     command: "gnome-extensions install /home{{ ansible_user }}/Downloads/dash-to-dock@micxgx.gmail.com"
