@@ -92,7 +92,7 @@
 
   - name: Enable GNOME Shell extensions
     command: "gnome-extensions install /home{{ ansible_user }}/Downloads/dash-to-dock@micxgx.gmail.com"
-    become_user: "{{ ansible_user | default(ansible_env.USER) }}"
+    become_user: "{{ ansible_user_id | default(ansible_env.USER) }}"
 
   - name: Download yt-dlp
     command: wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp
