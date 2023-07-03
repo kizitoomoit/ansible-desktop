@@ -6,7 +6,7 @@
   tasks:
   - name: Run whoami without become
     command: whoami
-    changed_when: falsebe
+    changed_when: false
     become: false
     register: whoami
 
