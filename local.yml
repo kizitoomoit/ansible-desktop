@@ -95,7 +95,7 @@
 
   - name: Create the extensions directory
     file:
-      path: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
+      path: "{{ login_user.HOME }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
       state: directory
       mode: '0755'
 
@@ -103,7 +103,7 @@
     unarchive:
       become: false
       src: "/tmp/dash-to-dock.zip"
-      dest: "{{ ansible_user_id }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
+      dest: "{{ login_user.HOME }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
       remote_src: yes
       extra_opts: --strip-components=1
         #creates: "{{ ansible_user_id }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
