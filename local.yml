@@ -82,6 +82,12 @@
       dest: "/tmp/dash-to-dock.zip"
       mode: 0644
 
+  - name: Create the extensions directory
+    file:
+      path: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
+      state: directory
+      mode: '0755'
+
   - name: Unzip Dash to Dock GNOME Shell extension
     unarchive:
       become: false
