@@ -100,8 +100,8 @@
       mode: '0755'
 
   - name: Unzip Dash to Dock GNOME Shell extension
+    become: false
     unarchive:
-      become: false
       src: "/tmp/dash-to-dock.zip"
       dest: "{{ login_user }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
       remote_src: yes
