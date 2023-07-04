@@ -5,14 +5,15 @@
 
   tasks:
   - name: Get user's home directory
-    command: eval echo ~{{ ansible_env.USER }}
-    register: user_home_result
+    ansible.builtin.stat:
+      path: "{{ ansible_env.HOME }}"
+    register: home_dir_result
     changed_when: false
 
   - name: Set user's home directory
     set_fact:
-      user_home: "{{ home_dir_result.stdout }}"
-    when: home_dir_result.stdout != ''
+      user_home: "{{ home_dir_result.stat.path }}"
+    when: home_dir_result.stat.exists
 
 
   - name: Run whoami without become
