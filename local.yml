@@ -5,8 +5,14 @@
 
   tasks:
   - name: Get user's home directory
-    command: "eval echo ~{{ ansible_env.SUDO_USER }}"
-    register: user_home
+    command: eval echo ~{{ ansible_user }}
+    register: user_home_result
+    changed_when: false
+
+  - name: Set user's home directory
+    set_fact:
+      user_home: "{{ home_dir_result.stdout }}"
+    when: home_dir_result.stdout != ''
 
 
   - name: Run whoami without become
