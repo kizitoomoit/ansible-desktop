@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   connection: local
-  become: false
+  become: true
 
   tasks:
   - name: Get user's home directory
