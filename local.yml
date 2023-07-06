@@ -103,7 +103,7 @@
 
   - name: Create the extensions directory
     file:
-      path: "/home/{{ local_user }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
+      path: "{{ local_user }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
       state: directory
       mode: '0755'
 
