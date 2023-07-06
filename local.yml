@@ -102,7 +102,7 @@
       name: code
 
   - name: install dash-to-dock GNOME Shell extesion
-    shell: gnome-extensions install dash-to-dock@micxgx.gmail.com
+    shell: gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
     become_user: "{{ ansible_env.SUDO_USER }}"
 
         #  - name: Download Dash to Dock GNOME Shell extension
