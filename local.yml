@@ -72,9 +72,9 @@
       #  changed_when: chsh_result.stdout.find('/usr/bin/zsh') != -1
 
   - name: Install gnome-extensions-cli using pipx
-    command: pipx install gnome-extensions-cli --system-site-packages --user
+    command: pipx install gnome-extensions-cli --system-site-packages
     become: true
-    become_user: "{{ ansible_env.SUDO_USER }}"
+      #become_user: "{{ ansible_env.SUDO_USER }}"
 
   - name: Download Google Chrome .deb file
     get_url:
