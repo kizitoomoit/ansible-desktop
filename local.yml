@@ -16,11 +16,11 @@
     when: home_dir_result.stat.exists
 
 
-  - name: Run whoami without become
-    command: whoami
-    changed_when: false
-    become: false
-    register: whoami_result
+      #  - name: Run whoami without become
+      #command: whoami
+      #    changed_when: false
+      #    become: false
+      #    register: whoami_result
 
 
   - name: Update chache & Full system Update
