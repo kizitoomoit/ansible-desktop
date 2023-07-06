@@ -72,7 +72,7 @@
       #  changed_when: chsh_result.stdout.find('/usr/bin/zsh') != -1
 
   - name: Install gnome-extensions-cli using pipx
-    communit.general.pipx:
+    community.general.pipx:
       name: gnome-extensions-cli
       state: present
 
