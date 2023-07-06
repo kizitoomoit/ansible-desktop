@@ -108,13 +108,21 @@
       mode: '0755'
 
   - name: Unzip Dash to Dock GNOME Shell extension
-    become: false
     unarchive:
       src: "/tmp/dash-to-dock.zip"
-      dest: "/home/{{ ansible_env.SUDO_USER }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
+      dest: "home/{{ ansible_env.SUDO_USER }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
       remote_src: yes
-      extra_opts: "--strip-components=1"
-        #creates: "{{ ansible_home.stdout }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
+      extra-opts: "--strip-components=1"
+    becom_user: "{{ ansible_env.SUDO_USER | default(ansible_env.USER) }}"
+
+        #- name: Unzip Dash to Dock GNOME Shell extension
+        #  become: false
+        #  unarchive:
+        #    src: "/tmp/dash-to-dock.zip"
+        #    dest: "/home/{{ ansible_env.SUDO_USER }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
+        #    remote_src: yes
+        #    extra_opts: "--strip-components=1"
+        #      #creates: "{{ ansible_home.stdout }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
 
   - name: Enable GNOME Shell extensions
     command: "gnome-extensions install {{ ansible_home.stdout }}/Downloads/dash-to-dock@micxgx.gmail.com"
