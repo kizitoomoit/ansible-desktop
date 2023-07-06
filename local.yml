@@ -107,6 +107,7 @@
       state: directory
       mode: '0755'
 
+
   - name: Unzip Dash to Dock GNOME Shell extension
     unarchive:
       src: "/tmp/dash-to-dock.zip"
