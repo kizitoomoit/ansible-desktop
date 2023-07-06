@@ -16,7 +16,7 @@
 
   - name: Set user's home directory
     set_fact:
-      user_home: "{{ local_user_result.stdout.split()[0] }}"
+      local_user: "{{ local_user_result.stdout.split()[0] }}"
 
       # - name: Set user's home directory
       #   set_fact:
