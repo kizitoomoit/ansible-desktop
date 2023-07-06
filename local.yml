@@ -61,6 +61,7 @@
         - flameshot
         - xclip
         - gnome-shell-extension-prefs
+        - pipx
 
           # - name: Set zsh as the default shell
           #become: true
@@ -69,6 +70,11 @@
           #executable: /usr/bin/zsh
           #register: chsh_result
       #  changed_when: chsh_result.stdout.find('/usr/bin/zsh') != -1
+
+  - name: Install gnome-extensions-cli using pipx
+    communit.general.pipx:
+      name: gnome-extensions-cli
+      state: present
 
   - name: Download Google Chrome .deb file
     get_url:
@@ -95,41 +101,45 @@
     package:
       name: code
 
-  - name: Download Dash to Dock GNOME Shell extension
-    uri:
-      url: "https://extensions.gnome.org/extension-data/dash-to-dockmicxgx.gmail.com.v71.shell-extension.zip"
-      dest: "/tmp/dash-to-dock.zip"
-      mode: 0644
+  - name: install dash-to-dock GNOME Shell extesion
+    shell: gnome-extensions install dash-to-dock@micxgx.gmail.com
+    become_user: "{{ ansible_env.SUDO_USER }}"
 
-  - name: Create the extensions directory
-    file:
-      path: "/home/{{ ansible_env.SUDO_USER }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
-      state: directory
-      mode: '0755'
-
-
-  - name: Unzip Dash to Dock GNOME Shell extension
-    unarchive:
-      src: "/tmp/dash-to-dock.zip"
-      dest: "/home/{{ ansible_env.SUDO_USER }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
-      remote_src: yes
-        # extra-opts: "--strip-components=1"
-      owner: "{{ ansible_env.SUDO_USER }}"
-      group: "{{ ansible_env.SUDO_USER }}"
-      mode: '0755'
-
-        #- name: Unzip Dash to Dock GNOME Shell extension
-        #  become: false
-        #  unarchive:
-        #    src: "/tmp/dash-to-dock.zip"
-        #    dest: "/home/{{ ansible_env.SUDO_USER }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
-        #    remote_src: yes
-        #    extra_opts: "--strip-components=1"
-        #      #creates: "{{ ansible_home.stdout }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
-
-  - name: Enable GNOME Shell extensions
-    command: "gnome-extensions install /home/{{ ansible_env.SUDO_USER }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
-    become_user: "{{ ansible_env.SUDO_USER | default(ansible_env.USER) }}"
+        #  - name: Download Dash to Dock GNOME Shell extension
+        #    uri:
+        #      url: "https://extensions.gnome.org/extension-data/dash-to-dockmicxgx.gmail.com.v71.shell-extension.zip"
+        #      dest: "/tmp/dash-to-dock.zip"
+        #      mode: 0644
+        #
+        #  - name: Create the extensions directory
+        #    file:
+        #      path: "/home/{{ ansible_env.SUDO_USER }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
+        #      state: directory
+        #      mode: '0755'
+        #
+        #
+        #  - name: Unzip Dash to Dock GNOME Shell extension
+        #    unarchive:
+        #      src: "/tmp/dash-to-dock.zip"
+        #      dest: "/home/{{ ansible_env.SUDO_USER }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
+        #      remote_src: yes
+        #        # extra-opts: "--strip-components=1"
+        #      owner: "{{ ansible_env.SUDO_USER }}"
+        #      group: "{{ ansible_env.SUDO_USER }}"
+        #      mode: '0755'
+        #
+        #        #- name: Unzip Dash to Dock GNOME Shell extension
+        #        #  become: false
+        #        #  unarchive:
+        #        #    src: "/tmp/dash-to-dock.zip"
+        #        #    dest: "/home/{{ ansible_env.SUDO_USER }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
+        #        #    remote_src: yes
+        #        #    extra_opts: "--strip-components=1"
+        #        #      #creates: "{{ ansible_home.stdout }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
+        #
+        #  - name: Enable GNOME Shell extensions
+        #    command: "gnome-extensions install /home/{{ ansible_env.SUDO_USER }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
+        #    become_user: "{{ ansible_env.SUDO_USER }}"
 
   - name: Download yt-dlp
     command: wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp
