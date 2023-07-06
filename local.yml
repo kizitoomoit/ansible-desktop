@@ -111,7 +111,7 @@
     become: false
     unarchive:
       src: "/tmp/dash-to-dock.zip"
-      dest: "/home/{{ local_user }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
+      dest: "{{ ansible_env.SUDO_USER }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
       remote_src: yes
       extra_opts: "--strip-components=1"
         #creates: "{{ ansible_home.stdout }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
