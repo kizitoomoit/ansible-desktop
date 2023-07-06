@@ -128,7 +128,7 @@
         #      #creates: "{{ ansible_home.stdout }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
 
   - name: Enable GNOME Shell extensions
-    command: "gnome-extensions install {{ ansible_home.stdout }}/Downloads/dash-to-dock@micxgx.gmail.com"
+    command: "gnome-extensions install /home/{{ ansible_env.SUDO_USER }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
     become_user: "{{ ansible_env.SUDO_USER | default(ansible_env.USER) }}"
 
   - name: Download yt-dlp
