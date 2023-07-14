@@ -74,7 +74,7 @@
   - name: Install gnome-extensions-cli using pipx
     command: pipx install gnome-extensions-cli --system-site-packages
     become: true
-      #become_user: "{{ ansible_env.SUDO_USER }}"
+    become_user: "{{ ansible_env.SUDO_USER }}"
 
   - name: Download Google Chrome .deb file
     get_url:
@@ -105,6 +105,8 @@
     command: gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
     become: true
     become_user: "{{ ansible_env.SUDO_USER }}"
+    args:
+      executable: "{{ local_user }}/.local/bin/gnome-extensions-cli"
 
         #  - name: Download Dash to Dock GNOME Shell extension
         #    uri:
