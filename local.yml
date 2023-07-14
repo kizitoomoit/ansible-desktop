@@ -105,8 +105,8 @@
     command: gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
     become: true
     become_user: "{{ ansible_env.SUDO_USER }}"
-    args:
-      executable: "{{ local_user }}/.local/bin/gnome-extensions-cli"
+    environment:
+      PATH: "{{ local_user.stdout }}/.local/bin/gnome-extensions-cli"
 
         #  - name: Download Dash to Dock GNOME Shell extension
         #    uri:
