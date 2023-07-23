@@ -105,7 +105,6 @@
     command: gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
     become: true
     become_user: "{{ ansible_env.SUDO_USER }}"
-    become_method: runuser
     environment:
       PATH: "{{ ansible_env.HOME }}.local/bin/gnome-extensions-cli"
         #PATH: "{{ local_user.stdout }}/.local/bin/gnome-extensions-cli"
