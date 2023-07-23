@@ -106,7 +106,7 @@
     become: true
     become_user: "{{ ansible_env.SUDO_USER }}"
     environment:
-      PATH: "{{ ansible_env.HOME }}.local/share/gnome-shell/extensions"
+      PATH: "{{ ansible_env.HOME }}.local/bin/gnome-extensions-cli"
         #PATH: "{{ local_user.stdout }}/.local/bin/gnome-extensions-cli"
 
         #  - name: Download Dash to Dock GNOME Shell extension
