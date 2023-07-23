@@ -105,8 +105,11 @@
     command: gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
     become: true
     become_user: "{{ ansible_env.SUDO_USER }}"
+    become_method: runuser
     environment:
-      PATH: "{{ local_user.stdout }}/.local/bin/gnome-extensions-cli"
+      PATH: "{{ ansible_env.HOME }}.local/bin/gnome-extensions-cli"
+    when: local_user.exists
+        #PATH: "{{ local_user.stdout }}/.local/bin/gnome-extensions-cli"
 
         #  - name: Download Dash to Dock GNOME Shell extension
         #    uri:
@@ -117,8 +120,7 @@
         #  - name: Create the extensions directory
         #    file:
         #      path: "/home/{{ ansible_env.SUDO_USER }}/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com"
-        #      state: directory
-        #      mode: '0755'
+        #      state: directory #      mode: '0755'
         #
         #
         #  - name: Unzip Dash to Dock GNOME Shell extension
