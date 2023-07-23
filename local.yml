@@ -104,7 +104,7 @@
   - name: Install dash-to-dock GNOME shell extensions
     become: true
     become_user: "{{ ansible_env.SUDO_USER }}"
-    shell: "gnome-extensions-cli install dash-to-dock@micxgx.gmail.com"
+    shell: "{{ ansible_env.HOME }}/.local/bin/gnome-extensions-cli install dash-to-dock@micxgx.gmail.com"
         #- name: install dash-to-dock GNOME Shell extesion
         #  command: gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
         #  become: true
