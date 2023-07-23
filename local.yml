@@ -108,7 +108,6 @@
     become_method: runuser
     environment:
       PATH: "{{ ansible_env.HOME }}.local/bin/gnome-extensions-cli"
-    when: local_user.exists
         #PATH: "{{ local_user.stdout }}/.local/bin/gnome-extensions-cli"
 
         #  - name: Download Dash to Dock GNOME Shell extension
